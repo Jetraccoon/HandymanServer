@@ -19,7 +19,7 @@ public class Cunsomer {
     private String title;
 
     @Column(nullable = false)
-    private Date date;
+    private String name;
 
     public Cunsomer() {
     }
@@ -40,11 +40,11 @@ public class Cunsomer {
         this.title = title;
     }
 
-    public Date getDate() {
-        return date;
+    public String getName() {
+        return name;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setName(String name) {
+        this.name = name;
     }
 }
