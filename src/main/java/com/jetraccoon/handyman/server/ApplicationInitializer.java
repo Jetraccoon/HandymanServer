@@ -1,6 +1,7 @@
 package com.jetraccoon.handyman.server;
 
 import com.jetraccoon.handyman.server.config.WebConfig;
+import com.jetraccoon.handyman.server.repository.CunsomerRepository;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -13,6 +14,8 @@ import javax.servlet.ServletRegistration;
 public class ApplicationInitializer implements WebApplicationInitializer {
     private final static String DISPATCHER = "dispatcher";
 
+
+
     public void onStartup(javax.servlet.ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx=new AnnotationConfigWebApplicationContext();
         ctx.register(WebConfig.class);
@@ -21,4 +24,6 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         servlet.addMapping("/");
 
     }
+
+
 }
