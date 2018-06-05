@@ -16,25 +16,15 @@ public class HandymanController {
     private CunsomerRepository cunsomerRepository;
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String getName(@RequestParam("name") String name,@RequestParam("title") String title){
+    public Cunsomer getCunsomer(){
+        return createCunsomer();
+    }
+
+    private Cunsomer createCunsomer() {
         Cunsomer cunsomer = new Cunsomer();
-        cunsomer.setName(name);
-        cunsomer.setTitle(title);
-        cunsomerRepository.saveAndFlush(cunsomer);
-        return "success";
+        cunsomer.setId(1);
+        cunsomer.setName("kaka");
+        cunsomer.setTitle("bulka");
+        return cunsomer;
     }
-    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
-    public String get(@PathVariable int id){
-        List<Cunsomer> list = cunsomerRepository.findAll();
-        if(id<=list.size()-1){
-            long ID=list.get(id).getId();
-
-            String Name=list.get(id).getName();
-
-            String Text=list.get(id).getTitle();
-            return "ID:"+id+" Name:"+Name+" Text:"+Text;
-        }
-        return "Ошибка";
-    }
-
 }
