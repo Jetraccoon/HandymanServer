@@ -10,21 +10,28 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/handyman")
 public class HandymanController {
     @Autowired
     private CunsomerRepository cunsomerRepository;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public Cunsomer getCunsomer(){
-        return createCunsomer();
+    @RequestMapping(value = "/getall", method = RequestMethod.GET)
+    public List<Cunsomer> getAllCunsomer() {
+        return cunsomerRepository.findAll();
+    }
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    public Cunsomer getCunsomer(@PathVariable long id) {
+        return cunsomerRepository.getOne(id);
     }
 
-    private Cunsomer createCunsomer() {
+    @RequestMapping(
+            value = {"/create"},
+            method = {RequestMethod.GET}
+    )
+    public String createCunsomer(@RequestParam("name") String name, @RequestParam("title") String title) {
         Cunsomer cunsomer = new Cunsomer();
-        cunsomer.setId(1);
-        cunsomer.setName("kaka");
-        cunsomer.setTitle("bulka");
-        return cunsomer;
+        cunsomer.setName(name);
+        cunsomer.setTitle(title);
+        this.cunsomerRepository.saveAndFlush(cunsomer);
+        return "Success";
     }
 }
