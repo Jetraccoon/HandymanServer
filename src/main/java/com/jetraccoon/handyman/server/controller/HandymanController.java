@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -23,13 +22,13 @@ public class HandymanController {
         return cunsomerRepository.findById(id).get();
     }
 
-    @RequestMapping(value = {"/create"},method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"/create"},method = {RequestMethod.GET}    )
     public String createCunsomer(@RequestParam("name") String name, @RequestParam("title") String title) {
         Cunsomer cunsomer = new Cunsomer();
         cunsomer.setName(name);
         cunsomer.setTitle(title);
         cunsomerRepository.saveAndFlush(cunsomer);
+        cunsomer=null;
         return "Success";
     }
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
